@@ -21,19 +21,19 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+    margin: 0;
+    padding: 15px; /* Padding statt fixed position */
+    position: relative; /* fixed zu relative ändern */
 }
 
 .container {
     max-width: 400px;
-    width: 90%;
-    padding: 30px;
-    text-align: center;
-    z-index: 1;
+    width: 100%;
+    margin: auto;
+    padding: 20px;
     position: relative;
+    z-index: 2;
+    text-align: center;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(15px);
     border: none;
@@ -368,12 +368,32 @@ body::after {
 
 /* Verbesserte Responsive Anpassungen */
 @media (max-width: 480px) {
+    body {
+        padding: 10px;
+        min-height: 100%;
+        align-items: flex-start; /* Oben ausrichten auf Mobilgeräten */
+    }
+
     .container {
-        width: 90%;
-        padding: 20px;
-        margin: 10px;
-        max-height: 90vh; /* Maximale Höhe auf mobilen Geräten */
-        overflow-y: auto; /* Scrollbar wenn nötig */
+        width: 100%;
+        margin: 10px 0;
+        padding: 15px;
+        max-height: none; /* Entferne die maximale Höhe */
+    }
+
+    .links {
+        gap: 8px;
+        margin-bottom: 15px;
+    }
+
+    /* Sakura Container anpassen */
+    .sakura-container {
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
     }
 
     /* Kleinere Elemente auf mobilen Geräten */
@@ -403,7 +423,7 @@ body::after {
 
     /* Engerer Abstand zwischen den Links */
     .links {
-        gap: 10px;
+        gap: 8px;
     }
 
     /* Kleinerer Creator Code */
@@ -440,12 +460,17 @@ body::after {
     }
 }
 
-/* Landscape-Modus Anpassungen */
+/* Landscape-Modus verbessern */
 @media (max-height: 600px) and (orientation: landscape) {
+    body {
+        padding: 10px;
+        height: auto;
+        min-height: 100vh;
+    }
+
     .container {
-        max-height: 85vh;
-        overflow-y: auto;
-        padding: 15px;
+        margin: 10px auto;
+        max-height: none;
     }
 
     .logo-placeholder {
